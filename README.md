@@ -1,6 +1,8 @@
-# ผลการวิเคราะห์ข้อมูล จังหวัดที่นิยมไปเที่ยวในแต่ละเดือน
+# ผลการวิเคราะห์ข้อมูล 
+# จังหวัดที่นิยมไปเที่ยวในแต่ละเดือน
 
-# ข้อมูล
+> DADS5001 Mini Project
+
 ได้มีการนำข้อมูล **สถานการณ์การท่องเที่ยวในประเทศ รายจังหวัด** จาก [กระทรวงการท่องเที่ยวและกีฬา(Ministry of Tourism & Sports)](https://www.mots.go.th/more_news_new.php?cid=411)
 
 > ข้อมูลปี 2563 (มกราคม ถึง ธันวาคม) = 924 Row
@@ -55,14 +57,13 @@ data = data.astype({"thai_visitors":'int', "foreign_visitors":'int'})
 data["thai_and_foreign_visitors"] = data["thai_visitors"] + data["foreign_visitors"]
 ```
 
-ได้จับกลุ่มข้อมูลตามเดือน พบว่าจังหวัด กรุงเทพมหานคร มีผู้มาเยี่ยมเยือนมากในทุกเดือน จึงขอตัด
+ได้จับกลุ่มข้อมูลตามเดือน พบว่าในแต่ละเดือน กรุงเทพมหานคร มีผู้เยี่ยมเยือนมากที่สุด
 
 ```
 thaiAndForeignVisitorsMax = data.groupby(['month'])['thai_and_foreign_visitors'].transform(max) == data['thai_and_foreign_visitors']
 data[thaiAndForeignVisitorsMax].loc[:, ["month","province"]]
 ```
 
-พบว่าในแต่ละเดือน กรุงเทพมหานคร มีผู้เยี่ยมเยือนมากที่สุด
 
 | index | month | province | mean |
 | ------------- | ------------- | ------------- | ------------- |
